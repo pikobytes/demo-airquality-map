@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "551c7633bc6d947f02a2cc52b9f1fb90",
+    "revision": "e9f704757095a9e8819ea689487c1097",
     "url": "/demo-airquality-map/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/demo-airquality-map/static/css/2.eafdcdb0.chunk.css"
   },
   {
-    "revision": "28e6b59ff271547699bb",
+    "revision": "13c3ae47b6d6ceed9ec3",
     "url": "/demo-airquality-map/static/css/main.7a299c94.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/demo-airquality-map/static/js/2.7f1b342f.chunk.js"
   },
   {
-    "revision": "28e6b59ff271547699bb",
-    "url": "/demo-airquality-map/static/js/main.06e5bbd0.chunk.js"
+    "revision": "13c3ae47b6d6ceed9ec3",
+    "url": "/demo-airquality-map/static/js/main.02ebf0e1.chunk.js"
   },
   {
     "revision": "385f06e2899a0d97da7f",
