@@ -17,6 +17,11 @@ const LAYER_ID_LABELS = "data-layer-labels-1";
 class DataLayer extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      popup: undefined,
+      selected: undefined,
+    }
   }
 
   componentDidMount() {
@@ -86,10 +91,16 @@ class DataLayer extends Component {
     map.getCanvas().style.cursor = "pointer";
 
     if (e.features.length > 0) {
-      const values = e.features.map(
-        ft => ft.properties.over50
+      this.setState({
+        selected: e.features[0],
+      }, this.renderPopup);
+
+      // Debug output
+      console.log(
+        e.features.map(
+          ft => ft.properties.over50
+        )
       );
-      console.log(values);
     }
   };
 
@@ -101,6 +112,39 @@ class DataLayer extends Component {
 
     // Reset the cursor style
     map.getCanvas().style.cursor = "";
+
+    this.setState({
+      selected: undefined,
+    }, this.renderPopup);
+  };
+
+  renderPopup = () => {
+    const { popup, selected } = this.state;
+    const { map } = this.props;
+
+    // Clear old popups
+    if (popup) {
+      popup.remove();
+    }
+
+    if (selected !== undefined) {
+      const { geometry, properties } = selected;
+      let href = properties.href.split("/devices/")[1];
+      href = href.split("/sensors/");
+      const title = `${href[0]}/${href[1]}`;
+
+      // Create the new popup
+      const popup = new mapboxgl.Popup({ className: "pb-map-popup", closeButton: false })
+      .setLngLat(geometry.coordinates)
+      .setHTML(`<div class="popup-content">` +
+        `<span class="title">${title}</span>` +
+        `<span class="value">Days over 50µg/m³: <span>${properties.over50}</span></span>` +
+        `</div>`)
+      .addTo(map);
+      this.setState({ popup });
+    } else {
+      this.setState({ popup: undefined });
+    }
   };
 
   render() {

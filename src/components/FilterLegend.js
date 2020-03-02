@@ -4,12 +4,6 @@
  * This file is subject to the terms and conditions defined in
  * file 'LICENSE.txt', which is part of this source code package.
  */
-/**
- * Created by jacob.mendt@pikobytes.de on 28.01.20.
- *
- * This file is subject to the terms and conditions defined in
- * file "LICENSE.txt", which is part of this source code package.
- */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -18,7 +12,6 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import MenuItem from "@material-ui/core/MenuItem";
 import InputBase from "@material-ui/core/InputBase";
 import InputLabel from "@material-ui/core/InputLabel";
 import NativeSelect from "@material-ui/core/NativeSelect";

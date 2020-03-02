@@ -31,7 +31,6 @@ def parseData(inputFiles):
 
             # Iterate over stations
             for sensor in data["data"]:
-
                 # Iterate over timeseries
                 ts = []
                 for i in range(0, len(sensor["values"])):
@@ -56,9 +55,17 @@ def parseData(inputFiles):
 
 def preprocessData(inputData, outputDir):
     for slice in inputData:
+        # Remove double records
+        unique = {}
+        for feature in slice["features"]:
+            coordinate = feature["coordinates"]
+            unique["%s_%s" % (round(coordinate[0], 4), round(coordinate[1], 4))] = feature
+        uniqueFeatures = unique.values()
+        print("Reduce from %s to %s features." %(len(slice["features"]), len(uniqueFeatures)))
+
         # Preprocess the data
         features = []
-        for feature in slice["features"]:
+        for feature in uniqueFeatures:
             # Count days of 50 µg/m3
             countOver50 = 0
             for record in feature["timeseries"]:
