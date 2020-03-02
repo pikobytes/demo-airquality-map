@@ -31,7 +31,7 @@
     "@material-ui/icons": "^4.5.1",
     "axios": "^0.19.2",
     "detect-browser": "^4.8.0",
-    "gh-pages": "^1.2.0",
+    "gh-pages": "^2.2.0",
     "history": "^4.10.1",
     "immutable": "^3.8.2",
     "mapbox-gl": "^1.6.1",
