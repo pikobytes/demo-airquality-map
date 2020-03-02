@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2F3BA2">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/icons/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="57x57" href="%PUBLIC_URL%/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="%PUBLIC_URL%/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="%PUBLIC_URL%/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="%PUBLIC_URL%/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="%PUBLIC_URL%/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="%PUBLIC_URL%/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="%PUBLIC_URL%/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="%PUBLIC_URL%/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="%PUBLIC_URL%/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="%PUBLIC_URL%/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/icons/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="%PUBLIC_URL%/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <title>%REACT_APP_WEBSITE_TITLE%</title>
+    <style>
+        /* styling for first loading feedback */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        html, body, .osw-app {
+            height: 100%;
+        }
+
+        .osw-loading-start {
+            height: 100%;
+
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: transparent;
+        }
+
+        .osw-loading-child-start {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            border: .25rem solid rgb(225,225,225);
+            border-top-color: #4e99ce;
+            animation: spin 1s infinite linear;
+        }
+    </style>
+</head>
+
+<body>
+    <noscript>
+        <div class="content no-script">
+            <h1>Your Browser does not support Javascript</h1>
+            <p>
+                This web application is based on Javascript. In case your browser does not support Javascript, use
+                another browser which supports Javascript or contact as <a href="mailto:info@pikobytes.de">info@pikobytes.de</a>.
+            </p>
+        </div>
+    </noscript>
+    <div id="root" class="osw-app">
+        <div class="osw-loading-start">
+            <div class="osw-loading-child-start"></div>
+        </div>
+    </div>
+</body>
+</html>

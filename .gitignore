@@ -1,0 +1,7 @@
+# do not add ide files
+.idea/
+node_modules/
+package-lock.json
+dist/
+build/
+preprocessing/input/
