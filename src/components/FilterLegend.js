@@ -129,7 +129,7 @@ class FilterLegend extends Component {
     return (
       <div className={clsx(classes.root, "pb-map-legend", className)}>
         <FormControl className={classes.formControl}>
-          <InputLabel id="customized-select">Beurteilungsjahr</InputLabel>
+          <InputLabel id="customized-select">Evaluation year</InputLabel>
           <NativeSelect
             id="customized-select"
             value={currentYear}
@@ -149,7 +149,7 @@ class FilterLegend extends Component {
           </NativeSelect>
         </FormControl>
         <Typography component="p" variant="body1">
-          Zahl der Überschreitungungen des Feinstaub PM10 Tagesmittelwertes von 50 µg/m3 im Jahr 2019
+          Number of exceedances of the particulate matter PM10 daily mean value of 50 µg/m3 in {currentYear}.
         </Typography>
         <List className={classes.containerList}>
           {
@@ -168,7 +168,11 @@ class FilterLegend extends Component {
           }
         </List>
         <Typography component="p" variant="body1">
-          Letzte Datenaktualisierung zum {metadata.lastUpdate}
+          Data is based on <a
+          href="https://opensensorweb.de"
+          target="_blank"
+          rel="noopener noreferrer"
+        >OpenSensorWeb</a> was lastly update on {metadata.lastUpdate}.
         </Typography>
       </div>
     );
