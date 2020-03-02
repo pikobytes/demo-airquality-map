@@ -1,5 +1,8 @@
 .pb-airquality-map {
   .pb-map-popup {
+    width: 340px;
+    max-width: 340px !important;
+
     .mapboxgl-popup-content {
       padding: 24px 16px 24px 16px;
     }

@@ -48,7 +48,13 @@ class DataLayer extends Component {
       "paint": {
         "circle-radius": {
           "base": 1.75,
-          "stops": [[5, 3], [8, 5], [16, 10], [22, 180]]
+          "stops": [
+            [3, 3],
+            [5, 4],
+            [8, 6],
+            [16, 10],
+            [22, 180],
+          ]
         },
         "circle-color": [
           "step",
@@ -64,7 +70,8 @@ class DataLayer extends Component {
           56, "#fd0000",
           63, "#a80000",
           70, "#a900e6",
-        ]
+        ],
+        "circle-opacity": 0.85,
       }
     });
 
@@ -96,11 +103,11 @@ class DataLayer extends Component {
       }, this.renderPopup);
 
       // Debug output
-      console.log(
-        e.features.map(
-          ft => ft.properties.over50
-        )
-      );
+      // console.log(
+      //   e.features.map(
+      //     ft => ft.properties.over50
+      //   )
+      // );
     }
   };
 
@@ -129,9 +136,11 @@ class DataLayer extends Component {
 
     if (selected !== undefined) {
       const { geometry, properties } = selected;
-      let href = properties.href.split("/devices/")[1];
-      href = href.split("/sensors/");
-      const title = `${href[0]}/${href[1]}`;
+      let href = properties.href.split("/");
+      const sensorId = href[href.length - 1];
+      const deviceId = href[href.length - 3];
+      const networkId = href[href.length - 5];
+      const title = `${networkId}/${deviceId}/${sensorId}`;
 
       // Create the new popup
       const popup = new mapboxgl.Popup({ className: "pb-map-popup", closeButton: false })
