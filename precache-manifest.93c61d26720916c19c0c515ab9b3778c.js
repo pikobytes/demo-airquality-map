@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "47673e22b88a3798c3c1964c06f8c6d2",
+    "revision": "da658a1bb7a985a822367c56aa05d172",
     "url": "/demo-airquality-map/index.html"
   },
   {
-    "revision": "022245db2a52cbc619b4",
+    "revision": "56c0c54e6adb1e28bf7b",
     "url": "/demo-airquality-map/static/css/2.eafdcdb0.chunk.css"
   },
   {
-    "revision": "642f20772a609a8d5034",
-    "url": "/demo-airquality-map/static/css/main.7a299c94.chunk.css"
+    "revision": "229635c09b78712a480d",
+    "url": "/demo-airquality-map/static/css/main.5d5d4b62.chunk.css"
   },
   {
-    "revision": "022245db2a52cbc619b4",
-    "url": "/demo-airquality-map/static/js/2.7f1b342f.chunk.js"
+    "revision": "56c0c54e6adb1e28bf7b",
+    "url": "/demo-airquality-map/static/js/2.65e837b0.chunk.js"
   },
   {
-    "revision": "642f20772a609a8d5034",
-    "url": "/demo-airquality-map/static/js/main.d6ea404e.chunk.js"
+    "revision": "229635c09b78712a480d",
+    "url": "/demo-airquality-map/static/js/main.737c1309.chunk.js"
   },
   {
     "revision": "385f06e2899a0d97da7f",
