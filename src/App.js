@@ -126,7 +126,7 @@ class App extends Component {
 
   fetchInitialData = async () => {
     try {
-      const metadata = await axios.get("/data/metadata.json");
+      const metadata = await axios.get("data/metadata.json");
 
       if (metadata.status === 200) {
         this.setState({
