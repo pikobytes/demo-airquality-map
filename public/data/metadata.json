@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2020-03-02",
+  "lastUpdate": "2020-03-09",
   "slices": [
     { "year":  "2011", "path":  "data/pm10-2011.json" },
     { "year":  "2012", "path":  "data/pm10-2012.json" },

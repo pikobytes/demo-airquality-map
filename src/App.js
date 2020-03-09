@@ -163,6 +163,13 @@ class App extends Component {
       if (measurements.status === 200) {
         this.setState({
           data: measurements.data,
+        }, () => {
+          // Make sure to update also the displayed feature count
+          const { map } = this.state;
+
+          if (map !== undefined) {
+            this.updateFeaturesWithinBounds(map.getBounds());
+          }
         });
       }
 

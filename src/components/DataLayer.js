@@ -140,7 +140,7 @@ class DataLayer extends Component {
       const sensorId = href[href.length - 1];
       const deviceId = href[href.length - 3];
       const networkId = href[href.length - 5];
-      const title = `${networkId}/${deviceId}/${sensorId}`;
+      const title = `${networkId} / ${deviceId} / ${sensorId}`;
 
       // Create the new popup
       const popup = new mapboxgl.Popup({ className: "pb-map-popup", closeButton: false })

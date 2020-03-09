@@ -223,7 +223,7 @@ class FilterLegend extends Component {
           href="https://opensensorweb.de"
           target="_blank"
           rel="noopener noreferrer"
-        >OpenSensorWeb</a> was lastly update on {metadata.lastUpdate}.
+        >OpenSensorWeb</a>. Last update on {metadata.lastUpdate}.
         </Typography>
       </div>
     );
