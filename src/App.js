@@ -12,7 +12,6 @@
  */
 import React, { Component } from "react";
 import axios from "axios";
-import Immutable from "immutable";
 import clsx from "clsx";
 import { withStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
@@ -108,6 +107,9 @@ class App extends Component {
 
     // use this in case a feedback is need
     feedback: undefined,
+
+    // features within map bounds
+    featuresWithinBounds: 0,
   };
 
   componentDidMount() {
@@ -212,8 +214,15 @@ class App extends Component {
   handleMapLoad = (map) => {
     if (this.state.map === undefined) {
       map.on("moveend", (e) => {
-          console.log(e.target.getZoom());
+        this.updateFeaturesWithinBounds(
+          e.target.getBounds(),
+        );
       });
+
+      // Initial update of features within map bounds
+      this.updateFeaturesWithinBounds(
+        map.getBounds(),
+      );
 
       this.setState({
         map: map,
@@ -231,6 +240,29 @@ class App extends Component {
     })
   };
 
+  /**
+   * Updates the Features within map bounds count
+   * @param {mapboxgl.LngLatBounds} bounds
+   */
+  updateFeaturesWithinBounds = (bounds) => {
+    const { data } = this.state;
+
+    if (data !== undefined) {
+      const featuresWithinBounds = data.features.reduce(
+        (acc, cur) => {
+          return acc + (
+            bounds.contains(cur.geometry.coordinates) ? 1 : 0
+          )
+        }, 0
+      );
+
+      // update state
+      this.setState({
+        featuresWithinBounds: featuresWithinBounds,
+      });
+    }
+  };
+
   render() {
     const {
       currentYear,
@@ -240,6 +272,7 @@ class App extends Component {
       metadata,
       data,
       feedback,
+      featuresWithinBounds,
     } = this.state;
     const { classes } = this.props;
 
@@ -260,8 +293,8 @@ class App extends Component {
                   viewport={{
                     bearing: 0,
                     latitude: 51.415,
-                    longitude: 8.846,
-                    zoom: 4,
+                    longitude: 0,
+                    zoom: 2,
                     pitch: 0,
                   }}
                   width={width}
@@ -283,9 +316,9 @@ class App extends Component {
               variant={feedback.variant}
             />
           )}
-
           <FilterLegend
             currentYear={currentYear}
+            featureCount={featuresWithinBounds}
             metadata={metadata}
             onChange={this.handleChangeData}
           />
