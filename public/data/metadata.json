@@ -1,6 +1,12 @@
 {
   "lastUpdate": "2020-03-02",
   "slices": [
+    { "year":  "2011", "path":  "data/pm10-2011.json" },
+    { "year":  "2012", "path":  "data/pm10-2012.json" },
+    { "year":  "2013", "path":  "data/pm10-2013.json" },
+    { "year":  "2014", "path":  "data/pm10-2014.json" },
+    { "year":  "2015", "path":  "data/pm10-2015.json" },
+    { "year":  "2016", "path":  "data/pm10-2016.json" },
     { "year":  "2017", "path":  "data/pm10-2017.json" },
     { "year":  "2018", "path":  "data/pm10-2018.json" },
     { "year":  "2019", "path":  "data/pm10-2019.json" },
