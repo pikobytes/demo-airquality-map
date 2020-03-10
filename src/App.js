@@ -11,6 +11,12 @@
  * file 'LICENSE.txt', which is part of this source code package.
  */
 import React, { Component } from "react";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+} from "react-share";
 import axios from "axios";
 import clsx from "clsx";
 import { withStyles } from "@material-ui/core";
@@ -27,6 +33,7 @@ const PRIVACY_LINK = process.env.REACT_APP_LINK_PRIVACY;
 const IMPRESSUM_LINK = process.env.REACT_APP_LINK_IMPRESSUM;
 const MAPBOX_ACCESS_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 const MAPBOX_STYLE = process.env.REACT_APP_MAPBOX_STYLE;
+const PUBLIC_URL = process.env.PUBLIC_URL;
 
 const styles = (theme) => {
   return {
@@ -86,7 +93,7 @@ const styles = (theme) => {
   }
 };
 
-
+console.log(process.env)
 class App extends Component {
   state = {
     // parameters for the size of the map container
@@ -329,6 +336,21 @@ class App extends Component {
             metadata={metadata}
             onChange={this.handleChangeData}
           />
+          <FacebookShareButton
+            url={"https://pikobytes.github.io/demo-airquality-map/"}
+            title={"Share on Facebook"}
+            className="pb-share-button facebook"
+          >
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+
+          <TwitterShareButton
+            url={PUBLIC_URL}
+            title={"Share on Twitter"}
+            className="pb-share-button twitter"
+          >
+            <TwitterIcon size={32} round />
+          </TwitterShareButton>
         </main>
         <div className={classes.footer}>
           <div>

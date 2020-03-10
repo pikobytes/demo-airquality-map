@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/pikobytes/demo-airquality-map/issues"
   },
-  "homepage": "https://pikobytes.github.io/demo-airquality-map/",
+  "homepage": "https://pikobytes.github.io/demo-airquality-map",
   "devDependencies": {
     "clsx": "^1.0.4",
     "enzyme": "^3.10.0",
@@ -40,6 +40,7 @@
     "react-dom": "^16.12.0",
     "react-ga": "^2.7.0",
     "react-scripts": "3.2.0",
+    "react-share": "^4.0.1",
     "typeface-roboto": "0.0.54"
   },
   "eslintConfig": {

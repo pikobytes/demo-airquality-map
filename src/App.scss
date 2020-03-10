@@ -47,4 +47,38 @@
       }
     }
   }
+
+  .pb-map-legend {
+    max-height: calc(100% - 150px);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .pb-share-button {
+    z-index: 1010;
+    position: absolute;
+    top: 10px;
+
+    circle {
+      fill: #b0b0b0;
+    }
+
+    &.twitter {
+      :hover {
+        circle {
+          fill: rgb(0, 172, 237);
+        }
+      }
+      right: 50px;
+    }
+
+    &.facebook {
+      :hover {
+        circle {
+          fill: rgb(59, 89, 152);
+        }
+      }
+      right: 90px;
+    }
+  }
 }
