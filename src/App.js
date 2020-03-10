@@ -23,6 +23,7 @@ import { withStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
 import DataLayer from "./components/DataLayer";
 import Map from "./components/Map";
+import FeaturePopup from "./components/FeaturePopup";
 import FilterLegend from "./components/FilterLegend";
 import Snackbar from "./components/Snackbar";
 import Logo from "./icons/pikobytes-logo-white.png";
@@ -93,7 +94,6 @@ const styles = (theme) => {
   }
 };
 
-console.log(process.env)
 class App extends Component {
   state = {
     // parameters for the size of the map container
@@ -117,6 +117,9 @@ class App extends Component {
 
     // features within map bounds
     featuresWithinBounds: 0,
+
+    // seletect features
+    featureSelected: undefined,
   };
 
   componentDidMount() {
@@ -222,6 +225,16 @@ class App extends Component {
     });
   };
 
+  handleCloseFeaturePopup = () => {
+    this.setState({ featureSelected: undefined });
+  };
+
+  handleFeatureClick = (feature) => {
+    this.setState({
+      featureSelected: feature,
+    });
+  };
+
   /**
    * @param {mapboxgl.Map} map
    */
@@ -287,6 +300,7 @@ class App extends Component {
       data,
       feedback,
       featuresWithinBounds,
+      featureSelected,
     } = this.state;
     const { classes } = this.props;
 
@@ -315,7 +329,11 @@ class App extends Component {
                 >
                   {
                     map !== undefined && (
-                      <DataLayer data={data} map={map} />
+                      <DataLayer
+                        data={data}
+                        map={map}
+                        onClick={this.handleFeatureClick}
+                      />
                     )
                   }
                 </Map>
@@ -351,6 +369,17 @@ class App extends Component {
           >
             <TwitterIcon size={32} round />
           </TwitterShareButton>
+
+          {
+            featureSelected !== undefined && (
+              <FeaturePopup
+                className="pb-feature-popup"
+                feature={featureSelected}
+                onClose={this.handleCloseFeaturePopup}
+                year={currentYear}
+              />
+            )
+          }
         </main>
         <div className={classes.footer}>
           <div>

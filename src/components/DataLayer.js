@@ -7,6 +7,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import mapboxgl from "mapbox-gl";
+import { parseSensorHref } from "../structs/utils";
 
 
 // IDs used for source and layers
@@ -78,18 +79,29 @@ class DataLayer extends Component {
     // register event listeners
     map.on("mousemove", LAYER_ID_POINTS, this.handleMouseMove);
     map.on("mouseleave", LAYER_ID_POINTS, this.handleMouseLeave);
+    map.on("click", LAYER_ID_POINTS, this.handleMouseClick);
   }
 
   componentWillUnmount() {
     const { map } = this.props;
     map.off("mousemove", LAYER_ID_POINTS, this.handleMouseMove);
     map.off("mouseleave", LAYER_ID_POINTS, this.handleMouseLeave);
+    map.off("click", LAYER_ID_POINTS, this.handleMouseClick);
   }
 
   componentDidUpdate() {
     const { map } = this.props;
     map.getSource(SOURCE_ID).setData(this.props.data);
   }
+
+  handleMouseClick = (e) => {
+    if (e.features.length > 0) {
+      if (this.props.onClick) {
+        this.handleMouseLeave();
+        this.props.onClick(e.features[0]);
+      }
+    }
+  };
 
   handleMouseMove = (e) => {
     const { map } = this.props;
@@ -101,13 +113,6 @@ class DataLayer extends Component {
       this.setState({
         selected: e.features[0],
       }, this.renderPopup);
-
-      // Debug output
-      // console.log(
-      //   e.features.map(
-      //     ft => ft.properties.over50
-      //   )
-      // );
     }
   };
 
@@ -136,10 +141,7 @@ class DataLayer extends Component {
 
     if (selected !== undefined) {
       const { geometry, properties } = selected;
-      let href = properties.href.split("/");
-      const sensorId = href[href.length - 1];
-      const deviceId = href[href.length - 3];
-      const networkId = href[href.length - 5];
+      const { sensorId, deviceId, networkId } = parseSensorHref(properties.href);
       const title = `${networkId} / ${deviceId} / ${sensorId}`;
 
       // Create the new popup
@@ -167,12 +169,14 @@ DataLayer.defaultProps = {
   data: {
     type: "FeatureCollection",
     features: [],
-  }
+  },
+  onClick: () => {},
 };
 
 DataLayer.propTypes = {
   data: PropTypes.object,
   map: PropTypes.instanceOf(mapboxgl.Map).isRequired,
+  onClick: PropTypes.func,
 };
 
 export default DataLayer;
