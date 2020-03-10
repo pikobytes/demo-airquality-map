@@ -53,7 +53,6 @@ class FeaturePopup extends Component {
       `&sid=${networkId}.${deviceId}.${sensorId},` +
       `&te=${y}-01-01,${y}-12-31&tz=B&z=15&v=sidebar`;
 
-    console.log(feature)
     return (
       <Modal
         className={className}

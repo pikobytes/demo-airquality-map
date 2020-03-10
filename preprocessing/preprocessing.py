@@ -55,6 +55,7 @@ def parseData(inputFiles):
     return inputData
 
 def preprocessData(inputData, outputDir):
+    networks = {}
     for slice in inputData:
         # Remove double records
         unique = {}
@@ -72,6 +73,9 @@ def preprocessData(inputData, outputDir):
             for record in feature["timeseries"]:
                 if record["value"] is not None and record["value"] >= 50:
                     countOver50 += 1
+
+            network = feature["href"].split("/")[-5]
+            networks[network] = True
             features.append({
                 "type": "Feature",
                 "geometry": {
@@ -81,6 +85,7 @@ def preprocessData(inputData, outputDir):
                 "properties": {
                     "href": feature["href"],
                     "over50": countOver50,
+                    "network": network,
                 }
             })
 
@@ -91,6 +96,10 @@ def preprocessData(inputData, outputDir):
                 "type": "FeatureCollection",
                 "features": features,
             }, outFile)
+
+        # Print networks
+        print("Networks found:")
+        print(list(networks.keys()))
 
 print("Start preprocessing ...")
 

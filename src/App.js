@@ -21,10 +21,11 @@ import axios from "axios";
 import clsx from "clsx";
 import { withStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
-import DataLayer from "./components/DataLayer";
+import DataLayer, { LAYER_ID_POINTS } from "./components/DataLayer";
 import Map from "./components/Map";
 import FeaturePopup from "./components/FeaturePopup";
 import FilterLegend from "./components/FilterLegend";
+import FilterNetwork from "./components/FilterNetwork";
 import Snackbar from "./components/Snackbar";
 import Logo from "./icons/pikobytes-logo-white.png";
 import "./App.scss";
@@ -105,6 +106,18 @@ class App extends Component {
 
     // metadata for selection the current slice
     metadata: undefined,
+
+    // Networks
+    networks: [
+      { label: "All", value: "All" },
+      { label: "Airly", value: "AIRLY" },
+      { label: "European Environment Agency (EEA)", value: "EEA-air" },
+      { label: "German Environment Agency (UBA)", value: "UBA_LUFT" },
+      { label: "Luftdaten.info", value: "luftdaten-info" },
+      { label: "OpenAQ", value: "OPEN_AQ" },
+      { label: "United States Environmental Protection Agency (EPA)", value: "EPA-AIR" },
+    ],
+    networkSelected: "All",
 
     // data selection currently displayed
     data: undefined,
@@ -257,6 +270,28 @@ class App extends Component {
     }
   };
 
+  handleChangeNetwork = (newNetwork) => {
+    const { map } = this.state;
+    if (map !== undefined) {
+      // The function does only react in case the map is initialize
+      this.setState({
+        networkSelected: newNetwork,
+      });
+
+      // Get current bounds
+      const bounds = map.getBounds();
+      // update the filter
+      if (newNetwork === "All") {
+        map.setFilter(LAYER_ID_POINTS, null);
+        this.updateFeaturesWithinBounds(bounds);
+
+      } else {
+        map.setFilter(LAYER_ID_POINTS, ["in", "network", newNetwork]);
+        this.updateFeaturesWithinBounds(bounds, newNetwork);
+      }
+    }
+  };
+
   /**
    * In case of resize event, this triggers an update of the map size
    */
@@ -270,15 +305,18 @@ class App extends Component {
   /**
    * Updates the Features within map bounds count
    * @param {mapboxgl.LngLatBounds} bounds
+   * @param {string|undefined} network
    */
-  updateFeaturesWithinBounds = (bounds) => {
+  updateFeaturesWithinBounds = (bounds, network = undefined) => {
     const { data } = this.state;
 
     if (data !== undefined) {
       const featuresWithinBounds = data.features.reduce(
         (acc, cur) => {
           return acc + (
-            bounds.contains(cur.geometry.coordinates) ? 1 : 0
+            bounds.contains(cur.geometry.coordinates) && (
+              network === undefined || network === cur.properties.network
+            ) ? 1 : 0
           )
         }, 0
       );
@@ -297,6 +335,8 @@ class App extends Component {
       width,
       map,
       metadata,
+      networks,
+      networkSelected,
       data,
       feedback,
       featuresWithinBounds,
@@ -354,12 +394,13 @@ class App extends Component {
             metadata={metadata}
             onChange={this.handleChangeData}
           />
+
           <FacebookShareButton
             url={"https://pikobytes.github.io/demo-airquality-map/"}
             title={"Share on Facebook"}
             className="pb-share-button facebook"
           >
-            <FacebookIcon size={32} round />
+            <FacebookIcon size={40} round />
           </FacebookShareButton>
 
           <TwitterShareButton
@@ -367,9 +408,14 @@ class App extends Component {
             title={"Share on Twitter"}
             className="pb-share-button twitter"
           >
-            <TwitterIcon size={32} round />
+            <TwitterIcon size={40} round />
           </TwitterShareButton>
 
+          <FilterNetwork
+            networks={networks}
+            onChange={this.handleChangeNetwork}
+            selectedNetwork={networkSelected}
+          />
           {
             featureSelected !== undefined && (
               <FeaturePopup

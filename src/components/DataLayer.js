@@ -12,7 +12,7 @@ import { parseSensorHref } from "../structs/utils";
 
 // IDs used for source and layers
 const SOURCE_ID = "data-source-1";
-const LAYER_ID_POINTS = "data-layer-points-1";
+export const LAYER_ID_POINTS = "data-layer-points-1";
 const LAYER_ID_LABELS = "data-layer-labels-1";
 
 class DataLayer extends Component {
