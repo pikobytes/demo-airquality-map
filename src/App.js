@@ -160,7 +160,7 @@ class App extends Component {
           const { metadata } = this.state;
 
           if (metadata.slices.length > 0) {
-            const dataDesc = metadata.slices[metadata.slices.length - 1];
+            const dataDesc = metadata.slices[metadata.slices.length - 2];
             this.setState({
               currentYear: dataDesc.year,
             });

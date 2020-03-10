@@ -104,16 +104,16 @@ const styles = (theme) => {
 };
 
 const TICKS = [
-  {"label": "0-7 Tage", color: "#2167fe" },
-  {"label": "> 14 Tage", color: "#66affe" },
-  {"label": "> 21 Tage", color: "#99c6fc" },
-  {"label": "> 28 Tage", color: "#b4e5fe" },
-  {"label": "> 35 Tage", color: "#fdfdbe" },
-  {"label": "> 42 Tage", color: "#fefe00" },
-  {"label": "> 49 Tage", color: "#feaa00" },
-  {"label": "> 56 Tage", color: "#fd0000" },
-  {"label": "> 63 Tage", color: "#a80000" },
-  {"label": "> 70 Tage", color: "#a900e6" }
+  {"label": "0-7 days", color: "#2167fe" },
+  {"label": "> 14 days", color: "#66affe" },
+  {"label": "> 21 days", color: "#99c6fc" },
+  {"label": "> 28 days", color: "#b4e5fe" },
+  {"label": "> 35 days", color: "#fdfdbe" },
+  {"label": "> 42 days", color: "#fefe00" },
+  {"label": "> 49 days", color: "#feaa00" },
+  {"label": "> 56 days", color: "#fd0000" },
+  {"label": "> 63 days", color: "#a80000" },
+  {"label": "> 70 days", color: "#a900e6" }
 ];
 
 /**
@@ -135,7 +135,7 @@ class FilterLegend extends Component {
     super(props);
 
     this.state = {
-      showInfo: false,
+      showInfo: true,
     }
   }
 
@@ -174,8 +174,7 @@ class FilterLegend extends Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-              sit amet blandit leo lobortis eget.
+              Number of exceedances of the particulate matter PM10 daily mean value of 50 µg/m3 in {currentYear}.
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -200,7 +199,7 @@ class FilterLegend extends Component {
           </NativeSelect>
         </FormControl>
         <Typography component="p" variant="body1">
-          Number of exceedances of the particulate matter PM10 daily mean value of 50 µg/m3 in {currentYear}.
+          Legende:
         </Typography>
         <List className={classes.containerList}>
           {
