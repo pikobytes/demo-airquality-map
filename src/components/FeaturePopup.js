@@ -50,7 +50,7 @@ class FeaturePopup extends Component {
     const { coordinates } = geometry;
     const y = year.length === 0 ? "2020" : year;
     const url = `https://opensensorweb.de/#/search?c=${coordinates[0]},${coordinates[1]}` +
-      `&sid=${networkId}.${deviceId}.${sensorId},` +
+      `&sid=${networkId}$${deviceId}$${sensorId},` +
       `&te=${y}-01-01,${y}-12-31&tz=B&z=15&v=sidebar`;
 
     return (
